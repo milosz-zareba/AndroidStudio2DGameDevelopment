@@ -3,8 +3,6 @@ package pl.auryn.androidstudio2dgamedevelopment;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import java.util.zip.Checksum;
-
 class GameLoop extends Thread {
 
     private static final double MAX_UPS = 60.0;
