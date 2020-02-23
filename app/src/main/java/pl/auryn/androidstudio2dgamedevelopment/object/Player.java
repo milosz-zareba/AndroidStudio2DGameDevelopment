@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import pl.auryn.androidstudio2dgamedevelopment.GameLoop;
 import pl.auryn.androidstudio2dgamedevelopment.Joystick;
 import pl.auryn.androidstudio2dgamedevelopment.R;
+import pl.auryn.androidstudio2dgamedevelopment.Utils;
 
 public class Player extends Circle {
 
@@ -20,6 +21,7 @@ public class Player extends Circle {
     }
 
     public void update() {
+
         // Update velocity based on actuator of joystick
         velocityX = joystick.getActuatorX() * MAX_SPEED;
         velocityY = joystick.getActuatorY() * MAX_SPEED;
@@ -27,6 +29,16 @@ public class Player extends Circle {
         // Update position
         positionX += velocityX;
         positionY += velocityY;
+
+        // Update direction
+        if (velocityX != 0 || velocityY != 0) {
+            // Normalize velocity to get direciton (unit vector of velocity)
+            double distance = Utils.getDistanceBetweenPoints(0, 0, velocityX, velocityY);
+            directionX = velocityX / distance;
+            directionY = velocityY / distance;
+
+        }
+
     }
 
 }
